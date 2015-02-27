@@ -9,7 +9,6 @@ menu.view = function (ctrl) {
   return [
     m('div.menu',
       [
-        m('h2', 'Components'),
         m('ul', [
           ctrl.pages().map(function (page) {
             return m('li',

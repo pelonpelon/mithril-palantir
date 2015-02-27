@@ -9,34 +9,34 @@
   },
   {
     "title": "Front Page Example",
-    "author": "",
-    "source": "",
-    "link": "",
+    "author": "Leo Horie",
+    "source": "Mithril Home Page",
+    "link": "http://lhorie.github.io/mithril/index.html",
     "note": "",
     "url": "/example"
   },
   {
     "title": "Animation",
-    "author": "",
-    "source": "",
-    "link": "",
+    "author": "Leo Horie",
+    "source": "Mithril Blog",
+    "link": "http://lhorie.github.io/mithril-blog/velocity-animations-in-mithril.html",
     "note": "velocity.js",
     "url": "/animation"
   },
   {
     "title": "Incremental Search",
     "author": "Leo Horie",
-    "source": "Mithril Home Page",
+    "source": "Mithril Blog",
     "link": "http://lhorie.github.io/mithril-blog/organizing-components.html",
     "note": "organizing components",
     "url": "/components"
   },
   {
-    "title": "Bi-directional Data Binding",
-    "author": "",
-    "source": "",
-    "link": "",
-    "note": "don't break the chain",
+    "title": "Seinfeld",
+    "author": "Leo Horie",
+    "source": "Mithril Blog",
+    "link": "http://lhorie.github.io/mithril-blog/building-a-seinfeld-app.html",
+    "note": "bi-directional data binding",
     "url": "/binding"
   },
   {

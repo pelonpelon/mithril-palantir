@@ -17,13 +17,15 @@ macro get_env {
 let function = macro {
   case infix { $m.$method = | $_ ($params (,) ...) {$body ...} } => {
 
+      if (Number(get_env('MITHRIL_DEBUG')) >= 4 ) console.log(to_str($method) + '()', $m.$method.arguments)
+
     if (#{m}[0].token.value === 'm' && #{$method}[0].token.value === 'module') {
     // can't get timing because module function returns to caller before end of body
       return #{
         $m.$method = function ($params (,) ...) {
           if (Number(get_env('MITHRIL_DEBUG')) >= 2 ) console.log('m.route() ', m.route());
-          if (Number(get_env('MITHRIL_DEBUG')) >= 2 ) console.dir($method.controller.prototype);
-          if (Number(get_env('MITHRIL_DEBUG')) >= 2 ) console.log(to_str($method) + '()', $m.$method.arguments)
+          /* if (Number(get_env('MITHRIL_DEBUG')) >= 2 ) console.dir($method.controller.prototype); */
+          if (Number(get_env('MITHRIL_DEBUG')) >= 2 ) console.log($method.controller.prototype, $m.$method.arguments)
           $body ...;
         }
       }
@@ -56,7 +58,7 @@ let function = macro {
     if (#{m}[0].token.value === 'm' && #{$method}[0].token.value === 'startComputation') {
       return #{
         $m.$method = function ($params (,) ...) {
-          if (Number(get_env('MITHRIL_DEBUG')) >= 2) console.time('COMPUTATION');
+          if (Number(get_env('MITHRIL_DEBUG')) >= 3) console.time('COMPUTATION');
           if (Number(get_env('MITHRIL_DEBUG')) >= 4 ) console.log(to_str($method) + '()', $m.$method.arguments)
           $body ...
         }
@@ -68,7 +70,7 @@ let function = macro {
         $m.$method = function ($params (,) ...) {
           if (Number(get_env('MITHRIL_DEBUG')) >= 4 ) console.log(to_str($method) + '()', $m.$method.arguments)
           $body ...
-          if (Number(get_env('MITHRIL_DEBUG')) >= 2) console.timeEnd('COMPUTATION');
+          if (Number(get_env('MITHRIL_DEBUG')) >= 3) console.timeEnd('COMPUTATION');
         }
       }
     }

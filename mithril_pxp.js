@@ -1,7 +1,7 @@
 var m$2 = function app(window$2, undefined) {
-    if (Number('p') >= 4)
+    if (Number('2') >= 4)
         console.log(app.name.replace(/\$.*/, '') + '()', app.arguments);
-    if (Number('p') >= 3)
+    if (Number('2') >= 3)
         console.time('TIME SINCE MITHRIL SOURCED');
     var OBJECT = '[object Object]', ARRAY = '[object Array]', STRING = '[object String]', FUNCTION = 'function';
     var type = {}.toString;
@@ -11,7 +11,7 @@ var m$2 = function app(window$2, undefined) {
         // caching commonly used variables
         $location, $requestAnimationFrame, $cancelAnimationFrame;
     function initialize(window$3) {
-        if (Number('p') >= 3) {
+        if (Number('2') >= 3) {
             function mithrilLoadTime() {
                 console.warn('DOMContentLoaded');
                 console.timeEnd('TIME SINCE MITHRIL SOURCED');
@@ -19,7 +19,7 @@ var m$2 = function app(window$2, undefined) {
             }
             window.document.onload = addEventListener('DOMContentLoaded', mithrilLoadTime, true);
         }
-        if (Number('p') >= 2) {
+        if (Number('2') >= 2) {
             function mithrilClickTime() {
                 console.time('CLICK');
                 console.warn('CLICK HAPPENED');
@@ -31,7 +31,7 @@ var m$2 = function app(window$2, undefined) {
             }
             window.onchange = addEventListener('change', mithrilChangeTime, true);
         }
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(initialize.name.replace(/\$.*/, '') + '()', initialize.arguments);
         $document = window$3.document;
         $location = window$3.location;
@@ -40,7 +40,7 @@ var m$2 = function app(window$2, undefined) {
     }
     initialize(window$2);
     function m$3() {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(m$3.name.replace(/\$.*/, '') + '()', m$3.arguments);
         var args = [].slice.call(arguments);
         var hasAttrs = args[1] != null && type.call(args[1]) === OBJECT && !('tag' in args[1]) && !('subtree' in args[1]);
@@ -83,7 +83,7 @@ var m$2 = function app(window$2, undefined) {
         return cell;
     }
     function build(parentElement, parentTag, parentCache, parentIndex, data, cached, shouldReattach, index, editable, namespace, configs) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.count('BUILD');
         if (//`build` is a recursive function that manages creation/diffing/removal of DOM elements based on comparison between `data` and `cached`
             //the diff algorithm can be summarized as this:
@@ -323,7 +323,7 @@ var m$2 = function app(window$2, undefined) {
                 var context = cached.configContext = cached.configContext || {};
                 var // bind
                 callback = function (data$2, args) {
-                    if (Number('p') >= 4)
+                    if (Number('2') >= 4)
                         console.log('callback', callback.arguments);
                     return function () {
                         return data$2.attrs['config'].apply(data$2, args);
@@ -382,12 +382,12 @@ var m$2 = function app(window$2, undefined) {
         return cached;
     }
     function sortChanges(a, b) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(sortChanges.name.replace(/\$.*/, '') + '()', sortChanges.arguments);
         return a.action - b.action || a.index - b.index;
     }
     function setAttributes(node, tag, dataAttrs, cachedAttrs, namespace) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(setAttributes.name.replace(/\$.*/, '') + '()', setAttributes.arguments);
         for (var attrName in dataAttrs) {
             var dataAttr = dataAttrs[attrName];
@@ -441,7 +441,7 @@ var m$2 = function app(window$2, undefined) {
         return cachedAttrs;
     }
     function clear(nodes, cached) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(clear.name.replace(/\$.*/, '') + '()', clear.arguments);
         for (var i = nodes.length - 1; i > -1; i--) {
             if (nodes[i] && nodes[i].parentNode) {
@@ -459,7 +459,7 @@ var m$2 = function app(window$2, undefined) {
             nodes.length = 0;
     }
     function unload(cached) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(unload.name.replace(/\$.*/, '') + '()', unload.arguments);
         if (cached.configContext && typeof cached.configContext.onunload === FUNCTION)
             cached.configContext.onunload();
@@ -472,7 +472,7 @@ var m$2 = function app(window$2, undefined) {
         }
     }
     function injectHTML(parentElement, index, data) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(injectHTML.name.replace(/\$.*/, '') + '()', injectHTML.arguments);
         var nextSibling = parentElement.childNodes[index];
         if (nextSibling) {
@@ -494,7 +494,7 @@ var m$2 = function app(window$2, undefined) {
         return nodes;
     }
     function autoredraw(callback, object) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(autoredraw.name.replace(/\$.*/, '') + '()', autoredraw.arguments);
         return function (e) {
             e = e || event;
@@ -525,11 +525,11 @@ var m$2 = function app(window$2, undefined) {
     };
     var nodeCache = [], cellCache = {};
     m$3.render = function (root, cell, forceRecreation) {
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.time('RENDER');
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('render' + '()', m$3.render.arguments);
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.groupCollapsed('m.render() {BODY}');
         var configs = [];
         if (!root)
@@ -550,43 +550,43 @@ var m$2 = function app(window$2, undefined) {
         cellCache[id] = build(node, null, undefined, undefined, cell, cellCache[id], false, 0, null, undefined, configs);
         for (var i = 0, len = configs.length; i < len; i++)
             configs[i]();
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.groupEnd('m.render() {BODY}');
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.timeEnd('RENDER');
     };
     function getCellCacheKey(element) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(getCellCacheKey.name.replace(/\$.*/, '') + '()', getCellCacheKey.arguments);
         var index = nodeCache.indexOf(element);
         return index < 0 ? nodeCache.push(element) - 1 : index;
     }
     m$3.trust = function (value) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('trust' + '()', m$3.trust.arguments);
         value = new String(value);
         value.$trusted = true;
         return value;
     };
     function gettersetter(store) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(gettersetter.name.replace(/\$.*/, '') + '()', gettersetter.arguments);
         var prop = function () {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log('prop', prop.arguments);
             if (arguments.length)
                 store = arguments[0];
             return store;
         };
         prop.toJSON = function () {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log('toJSON' + '()', prop.toJSON.arguments);
             return store;
         };
         return prop;
     }
     m$3.prop = function (store) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('prop' + '()', m$3.prop.arguments);
         if ((//note: using non-strict equality check here because we're checking if store is null OR undefined
             store != null && type.call(store) === OBJECT || typeof store === FUNCTION) && typeof store.then === FUNCTION) {
@@ -598,13 +598,11 @@ var m$2 = function app(window$2, undefined) {
     var FRAME_BUDGET = 16;
     //60 frames per second = 1 call per 16 ms
     m$3.module = function (root, module$2) {
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.log('m.route() ', m.route());
-        if (Number('p') >= 2)
-            console.dir(module$2.controller.prototype);
-        if (Number('p') >= 2)
-            console.log('module' + '()', //60 frames per second = 1 call per 16 ms
-            m$3.module.arguments);
+        if (/* if (Number(get_env('MITHRIL_DEBUG')) >= 2 ) console.dir($method.controller.prototype); */
+            Number('2') >= 2)
+            console.log(module$2.controller.prototype, m$3.module.arguments);
         if (!root)
             throw new Error('Please ensure the DOM element exists before rendering a template into it.');
         var index = roots.indexOf(root);
@@ -638,7 +636,7 @@ var m$2 = function app(window$2, undefined) {
         ;
     };
     m$3.redraw = function (force) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('redraw' + '()', m$3.redraw.arguments);
         if (//lastRedrawId is a positive number if a second redraw is requested before the next animation frame
             //lastRedrawID is null if it's the first redraw and not an event handler
@@ -659,7 +657,7 @@ var m$2 = function app(window$2, undefined) {
     };
     m$3.redraw.strategy = m$3.prop();
     var blank = function () {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('blank', blank.arguments);
         return '';
     };
@@ -671,13 +669,13 @@ var m$2 = function app(window$2, undefined) {
             redraw._count_all = m.prop(0);
         if (typeof redraw._count_none === 'undefined')
             redraw._count_none = m.prop(0);
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.time('REDRAW');
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.timeStamp('REDRAW BEGIN ');
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(redraw.name.replace(/\$.*/, '') + '()', redraw.arguments);
-        if (Number(isNaN('p')))
+        if (Number(isNaN('2')))
             console.profile('REDRAW');
         var forceRedraw = m$3.redraw.strategy() === 'all';
         for (var i = 0, root; root = roots[i]; i++) {
@@ -693,17 +691,17 @@ var m$2 = function app(window$2, undefined) {
         lastRedrawId = null;
         lastRedrawCallTime = new Date();
         m$3.redraw.strategy('diff');
-        if (Number(isNaN('p')))
+        if (Number(isNaN('2')))
             console.profileEnd('REDRAW');
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.timeStamp('REDRAW END');
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.timeEnd('CLICK');
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.timeEnd('CHANGE');
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.timeEnd('REDRAW');
-        if (Number('p') >= 3)
+        if (Number('2') >= 3)
             console.timeEnd('TIME SINCE DOMContentLoaded');
         if (strategy === 'diff')
             redraw._count_diff(redraw._count_diff() + 1);
@@ -715,23 +713,23 @@ var m$2 = function app(window$2, undefined) {
     }
     var pendingRequests = 0;
     m$3.startComputation = function () {
-        if (Number('p') >= 2)
+        if (Number('2') >= 3)
             console.time('COMPUTATION');
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('startComputation' + '()', m$3.startComputation.arguments);
         pendingRequests++;
     };
     m$3.endComputation = function () {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('endComputation' + '()', m$3.endComputation.arguments);
         pendingRequests = Math.max(pendingRequests - 1, 0);
         if (pendingRequests === 0)
             m$3.redraw();
-        if (Number('p') >= 2)
+        if (Number('2') >= 3)
             console.timeEnd('COMPUTATION');
     };
     var endFirstComputation = function () {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('endFirstComputation', endFirstComputation.arguments);
         if (m$3.redraw.strategy() == 'none') {
             pendingRequests--;
@@ -740,7 +738,7 @@ var m$2 = function app(window$2, undefined) {
             m$3.endComputation();
     };
     m$3.withAttr = function (prop, withAttrCallback) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('withAttr' + '()', m$3.withAttr.arguments);
         return function (e) {
             e = e || event;
@@ -755,11 +753,11 @@ var m$2 = function app(window$2, undefined) {
         search: '?'
     };
     var redirect = function () {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log('redirect', redirect.arguments);
         }, routeParams, currentRoute;
     m$3.route = function () {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('route' + '()', m$3.route.arguments);
         if (//m.route()
             arguments.length === 0)
@@ -823,12 +821,12 @@ var m$2 = function app(window$2, undefined) {
     };
     m$3.route.mode = 'search';
     function normalizeRoute(route) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(normalizeRoute.name.replace(/\$.*/, '') + '()', normalizeRoute.arguments);
         return route.slice(modes[m$3.route.mode].length);
     }
     function routeByValue(root, router, path) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(routeByValue.name.replace(/\$.*/, '') + '()', routeByValue.arguments);
         routeParams = {};
         var queryStart = path.indexOf('?');
@@ -855,7 +853,7 @@ var m$2 = function app(window$2, undefined) {
         }
     }
     function routeUnobtrusive(e) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(routeUnobtrusive.name.replace(/\$.*/, '') + '()', routeUnobtrusive.arguments);
         e = e || event;
         if (e.ctrlKey || e.metaKey || e.which === 2)
@@ -869,7 +867,7 @@ var m$2 = function app(window$2, undefined) {
         m$3.route(currentTarget[m$3.route.mode].slice(modes[m$3.route.mode].length), args);
     }
     function setScroll() {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(setScroll.name.replace(/\$.*/, '') + '()', setScroll.arguments);
         if (m$3.route.mode != 'hash' && $location.hash)
             $location.hash = $location.hash;
@@ -877,7 +875,7 @@ var m$2 = function app(window$2, undefined) {
             window$2.scrollTo(0, 0);
     }
     function buildQueryString(object, prefix) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(buildQueryString.name.replace(/\$.*/, '') + '()', buildQueryString.arguments);
         var str = [];
         for (var prop in object) {
@@ -891,7 +889,7 @@ var m$2 = function app(window$2, undefined) {
         return str.join('&');
     }
     function parseQueryString(str) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(parseQueryString.name.replace(/\$.*/, '') + '()', parseQueryString.arguments);
         var pairs = str.split('&'), params = {};
         for (var i = 0, len = pairs.length; i < len; i++) {
@@ -901,33 +899,33 @@ var m$2 = function app(window$2, undefined) {
         return params;
     }
     function reset(root) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(reset.name.replace(/\$.*/, '') + '()', reset.arguments);
         var cacheKey = getCellCacheKey(root);
         clear(root.childNodes, cellCache[cacheKey]);
         cellCache[cacheKey] = undefined;
     }
     m$3.deferred = function () {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('deferred' + '()', m$3.deferred.arguments);
         var deferred = new Deferred();
         deferred.promise = propify(deferred.promise);
         return deferred;
     };
     function propify(promise) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(propify.name.replace(/\$.*/, '') + '()', propify.arguments);
         var prop = m$3.prop();
         promise.then(prop);
         prop.then = function (resolve, reject) {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log('then' + '()', prop.then.arguments);
             return propify(promise.then(resolve, reject));
         };
         return prop;
     }
     function Deferred(successCallback, failureCallback) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(Deferred.name.replace(/\$.*/, '') + '()', Deferred.arguments);
         var RESOLVING = 1, REJECTING = 2, RESOLVED = 3, REJECTED = 4;
         var self = this, state = 0, promiseValue = 0, next = [];
@@ -960,7 +958,7 @@ var m$2 = function app(window$2, undefined) {
             return deferred.promise;
         };
         function finish(type$2) {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log(finish.name.replace(/\$.*/, '') + '()', finish.arguments);
             state = type$2 || REJECTED;
             next.map(function (deferred) {
@@ -968,7 +966,7 @@ var m$2 = function app(window$2, undefined) {
             });
         }
         function thennable(then, successCallback$2, failureCallback$2, notThennableCallback) {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log(thennable.name.replace(/\$.*/, '') + '()', thennable.arguments);
             if ((promiseValue != null && type.call(promiseValue) === OBJECT || typeof promiseValue === FUNCTION) && typeof then === FUNCTION) {
                 try {
@@ -996,7 +994,7 @@ var m$2 = function app(window$2, undefined) {
             }
         }
         function fire() {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log(fire.name.replace(/\$.*/, '') + '()', fire.arguments);
             var
             // check if it's a thenable
@@ -1046,11 +1044,11 @@ var m$2 = function app(window$2, undefined) {
             throw e;
     };
     m$3.sync = function (args) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('sync' + '()', m$3.sync.arguments);
         var method = 'resolve';
         function synchronizer(pos, resolved) {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log(synchronizer.name.replace(/\$.*/, '') + '()', synchronizer.arguments);
             return function (value) {
                 results[pos] = value;
@@ -1075,12 +1073,12 @@ var m$2 = function app(window$2, undefined) {
         return deferred.promise;
     };
     function identity(value) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(identity.name.replace(/\$.*/, '') + '()', identity.arguments);
         return value;
     }
     function ajax(options) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(ajax.name.replace(/\$.*/, '') + '()', ajax.arguments);
         if (options.dataType && options.dataType.toLowerCase() === 'jsonp') {
             var callbackKey = 'mithril_callback_' + new Date().getTime() + '_' + Math.round(Math.random() * 10000000000000000).toString(36);
@@ -1094,7 +1092,7 @@ var m$2 = function app(window$2, undefined) {
                 window$2[callbackKey] = undefined;
             };
             script.onerror = function (e) {
-                if (Number('p') >= 4)
+                if (Number('2') >= 4)
                     console.log('onerror' + '()', script.onerror.arguments);
                 script.parentNode.removeChild(script);
                 options.onerror({
@@ -1108,7 +1106,7 @@ var m$2 = function app(window$2, undefined) {
                 return false;
             };
             script.onload = function (e) {
-                if (Number('p') >= 4)
+                if (Number('2') >= 4)
                     console.log('onload' + '()', script.onload.arguments);
                 return false;
             };
@@ -1118,7 +1116,7 @@ var m$2 = function app(window$2, undefined) {
             var xhr = new window$2.XMLHttpRequest();
             xhr.open(options.method, options.url, true, options.user, options.password);
             xhr.onreadystatechange = function () {
-                if (Number('p') >= 4)
+                if (Number('2') >= 4)
                     console.log('onreadystatechange' + '()', xhr.onreadystatechange.arguments);
                 if (xhr.readyState === 4) {
                     if (xhr.status >= 200 && xhr.status < 300)
@@ -1153,7 +1151,7 @@ var m$2 = function app(window$2, undefined) {
         }
     }
     function bindData(xhrOptions, data, serialize) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(bindData.name.replace(/\$.*/, '') + '()', bindData.arguments);
         if (xhrOptions.method === 'GET' && xhrOptions.dataType != 'jsonp') {
             var prefix = xhrOptions.url.indexOf('?') < 0 ? '?' : '&';
@@ -1164,7 +1162,7 @@ var m$2 = function app(window$2, undefined) {
         return xhrOptions;
     }
     function parameterizeUrl(url, data) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log(parameterizeUrl.name.replace(/\$.*/, '') + '()', parameterizeUrl.arguments);
         var tokens = url.match(/:[a-z]\w+/gi);
         if (tokens && data) {
@@ -1177,9 +1175,9 @@ var m$2 = function app(window$2, undefined) {
         return url;
     }
     m$3.request = function (xhrOptions) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('request' + '()', m$3.request.arguments);
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.time('REQUEST');
         if (xhrOptions.background !== true)
             m$3.startComputation();
@@ -1193,7 +1191,7 @@ var m$2 = function app(window$2, undefined) {
         xhrOptions.url = parameterizeUrl(xhrOptions.url, xhrOptions.data);
         xhrOptions = bindData(xhrOptions, xhrOptions.data, serialize);
         xhrOptions.onload = xhrOptions.onerror = function (e) {
-            if (Number('p') >= 4)
+            if (Number('2') >= 4)
                 console.log('onerror' + '()', xhrOptions.onerror.arguments);
             try {
                 e = e || event;
@@ -1217,12 +1215,12 @@ var m$2 = function app(window$2, undefined) {
         ajax(xhrOptions);
         deferred.promise(xhrOptions.initialValue);
         return deferred.promise;
-        if (Number('p') >= 2)
+        if (Number('2') >= 2)
             console.timeEnd('REQUEST');
     };
     //testing API
     m$3.deps = function (mock) {
-        if (Number('p') >= 4)
+        if (Number('2') >= 4)
             console.log('deps' + '()', //testing API
             m$3.deps.arguments);
         initialize(window$2 = mock || window$2);
