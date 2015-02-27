@@ -2,21 +2,21 @@
 
 // redraw_all:
 function redrawDiff() {
-  console.log('called redrawAll');
+  console.log('forced diff');
   m.startComputation();
   m.redraw.strategy('diff');
   m.endComputation();
 }
 
 function redrawAll() {
-  console.log('called redrawAll');
+  console.log('forced all');
   m.startComputation();
   m.redraw.strategy('all');
   m.endComputation();
 }
 
 function redrawNone() {
-  console.log('called redrawNone');
+  console.log('forced none');
   m.startComputation();
   m.redraw.strategy('none');
   m.endComputation();
@@ -24,20 +24,28 @@ function redrawNone() {
 
 var template = [
   m('h2', 'Intro'),
-  m('p', 'This is the intro'),
-  m('p', 'And this is a very long paragraph that I am using to check to see if wrap is turned off'),
-  m('a[href="javascript:;"]', { onclick: redrawDiff }, 'Redraw_diff'),
-  m('a[href="javascript:;"]', { onclick: redrawAll }, 'Redraw_all'),
-  m('a[href="javascript:;"]', { onclick: redrawNone }, 'Redraw_none')
+  m('p', 'Open your developer tools vertically to sit side-by-side with the page.'),
+  m('p', 'Open the console and refresh the page.'),
+  m('ul', { class: 'plain-list'  }, [
+    m('li',
+      m('a[href="javascript:;"]', { onclick: redrawDiff }, 'redraw with strategy set to "diff"')
+      ),
+    m('li',
+      m('a[href="javascript:;"]', { onclick: redrawAll }, 'redraw with strategy set to "all"')
+      ),
+    m('li',
+      m('a[href="javascript:;"]', { onclick: redrawNone }, 'redraw with strategy set to "none"')
+      )
+  ])
 ];
 
 var intro = {};
 
-intro.controller = function() {
+intro.controller = function () {
 
 };
 
-intro.view = function(ctrl) {
+intro.view = function (ctrl) {
   return [
     m('.intro', template)
   ];

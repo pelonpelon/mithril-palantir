@@ -4,6 +4,7 @@ nib = require "nib"
 sourcemaps = require "gulp-sourcemaps"
 handleErrors = require "../util/handleErrors"
 config = require "../../gulp-config"
+
 gulp.task "styles", ->
   gulp.src config.styles
     .pipe sourcemaps.init()
@@ -13,5 +14,5 @@ gulp.task "styles", ->
     )
     .pipe sourcemaps.write()
   .on("error", handleErrors)
-  .pipe gulp.dest config.dest
+  .pipe gulp.dest config.versionDir
 

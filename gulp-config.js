@@ -1,25 +1,30 @@
 'use strict';
 
+// host name, IDs, keys, etc. INCLUDE THIS FILE IN .gitignore
+var myconfig = require('./myprivateconfig.js');
+
+
 var version = 'app'; // or basename
-var build = './build';
-var dest = build + '/' + version;
 var src = './src';
+var build = './build';
+var versionDir = build + '/' + version;
 var dist = './dist';
 var styles = src + '/styles/' + version + '.styl';
-var remoteHost = 'sf-eagle.com';
-var remotePath = '/var/chroot/home/content/20/9803620/html/';
-var remoteUser = 'sfeagleftp';
+
 
 module.exports = {
 
-  dest: dest,
-  src: src,
-  dist: dist,
   version: version,
+  src: src,
+  build: build,
+  versionDir: versionDir,
+  dist: dist,
   styles: styles,
-  remoteHost: remoteHost,
-  remotePath: remotePath,
-  remoteUser: remoteUser,
+
+  remoteHost: myconfig.remoteHost,
+  remotePath: myconfig.remotePath,
+  remoteUser: myconfig.remoteUser,
+  googleAnalyticsId: myconfig.googleAnalyticsId,
 
   browserSync: {
     server: {
@@ -33,25 +38,29 @@ module.exports = {
       '!' + build + '/**.map'
     ]
   },
+  webpack: {
+    configfile: './config/webpack.js'
+
+  },
   jade: {
     // src: src + '/jade/*.jade',
-    // dest: dest
+    // dest: build
   },
   stylus: {
     // src: src + '/styles/' + version + '.styl',
-    // dest: dest + '/css'
+    // dest: build + '/css'
   },
   sass: {
     // src: src + '/sass/' + version + '.scss',
-    // dest: dest
+    // dest: build
   },
   images: {
     // src: src + '/assets/images/**',
-    // dest: dest + '/images'
+    // dest: build + '/images'
   },
   markup: {
     // src: src + '/htdocs/**',
-    // dest: dest
+    // dest: build
   },
   browserify: {
     // Enable source maps
@@ -62,12 +71,12 @@ module.exports = {
     // bundle config in the list below
     bundleConfigs: [{
       entries: src + '/coffee/' + version + '.coffee',
-      dest: dest,
+      dest: build,
       outputName: 'main.js'
     }]
   },
   rsync: {
     src: dist,
-    dest: remoteUser + '@' + remoteHost + ':' + remotePath
+    dest: myconfig.remoteUser + '@' + myconfig.remoteHost + ':' + myconfig.remotePath
   }
 };

@@ -30,6 +30,7 @@ var requireDir = require('require-dir');
 
 var gulp = require('gulp');
 var config = require('./gulp-config.js');
+var myconfig = require('./myprivateconfig.js');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var path = require('path');
@@ -43,10 +44,11 @@ var url = require('url');
 var argv = require('minimist')(process.argv.slice(2));
 
 // Settings
-var DEST = './build'; // The build output folder
-var VERSION = DEST + '/' + config.version;
+// var DEST = './build'; // The build output folder
+var DEST = config.build; // The build output folder
+var VERSION_DIR = config.versionDir;
 var RELEASE = !!argv.release; // Minimize and optimize during a build?
-var GOOGLE_ANALYTICS_ID = 'UA-XXXXX-X'; // https://www.google.com/analytics/web/
+var GOOGLE_ANALYTICS_ID = myconfig.googleAnalyticsId; // https://www.google.com/analytics/web/
 var AUTOPREFIXER_BROWSERS = [ // https://github.com/ai/autoprefixer
   'ie >= 10',
   'ie_mob >= 10',
@@ -61,9 +63,10 @@ var AUTOPREFIXER_BROWSERS = [ // https://github.com/ai/autoprefixer
 
 var src = {};
 var watch = false;
-var pkgs = (function() {
+var pkgs = (function () {
   var pkgs = {};
-  var map = function(source) {
+
+  var map = function (source) {
     for (var key in source) {
       pkgs[key.replace(/[^a-z0-9]/gi, '')] = source[key].substring(1);
     }
@@ -91,9 +94,9 @@ gulp.task('vendor', function() {
   ];
   return merge(
     gulp.src(src.vendor)
-      .pipe(gulp.dest(VERSION + '/vendor')),
+      .pipe(gulp.dest(VERSION_DIR + '/vendor')),
     gulp.src('./node_modules/bootstrap/dist/fonts/**')
-      .pipe(gulp.dest(VERSION + '/fonts'))
+      .pipe(gulp.dest(VERSION_DIR + '/fonts'))
   );
 });
 
@@ -103,8 +106,8 @@ gulp.task('assets', function() {
     'src/assets/**'
   ];
   return gulp.src(src.assets)
-    .pipe($.changed(VERSION))
-    .pipe(gulp.dest(VERSION))
+    .pipe($.changed(VERSION_DIR))
+    .pipe(gulp.dest(VERSION_DIR))
     .pipe($.size({
       title: 'assets'
     }));
@@ -125,12 +128,12 @@ gulp.task('index', function() {
 gulp.task('images', function() {
   src.images = 'src/images/**';
   return gulp.src(src.images)
-    .pipe($.changed(VERSION + '/images'))
+    .pipe($.changed(VERSION_DIR + '/images'))
     .pipe($.imagemin({
       progressive: true,
       interlaced: true
     }))
-    .pipe(gulp.dest(VERSION + '/images'))
+    .pipe(gulp.dest(VERSION_DIR + '/images'))
     .pipe($.size({
       title: 'images'
     }));
@@ -141,7 +144,7 @@ gulp.task('pages', function() {
   src.pages = ['src/pages/**/*.js', 'src/pages/index.html', 'src/pages/404.html'];
 
   return gulp.src(src.pages)
-    .pipe($.changed(VERSION, {
+    .pipe($.changed(VERSION_DIR, {
       extension: '.html'
     }))
     .pipe($.replace('UA-XXXXX-X', GOOGLE_ANALYTICS_ID))
@@ -151,7 +154,7 @@ gulp.task('pages', function() {
       collapseWhitespace: true,
       minifyJS: true
     }), $.jsbeautifier()))
-    .pipe(gulp.dest(VERSION))
+    .pipe(gulp.dest(VERSION_DIR))
     .pipe($.size({
       title: 'pages'
     }));
@@ -171,7 +174,7 @@ gulp.task('pages', function() {
 // browsers: AUTOPREFIXER_BROWSERS
 // }))
 // .pipe($.if(RELEASE, $.minifyCss()))
-// .pipe(gulp.dest(VERSION + '/css'))
+// .pipe(gulp.dest(VERSION_DIR + '/css'))
 // .pipe($.size({
 // title: 'styles'
 // }));
@@ -179,7 +182,7 @@ gulp.task('pages', function() {
 
 // Bundle
 gulp.task('bundle', function(cb) {
-  var options = require('./config/webpack.js')(RELEASE, watch);
+  var options = require(config.webpack.configfile)(RELEASE, watch);
   gulp.src('./src/app.js')
     .pipe($.webpack(options))
     .pipe(gulp.dest('./build/'));
@@ -201,7 +204,8 @@ gulp.task('serve', function(cb) {
       browser: 'Google Chrome Canary',
       notify: false,
       // Customize the BrowserSync console logging prefix
-      logPrefix: 'PxP',
+      logPrefix: 'TIR',
+      port: 3030,
       // Run as an https by uncommenting 'https: true'
       // Note: this uses an unsigned certificate which on first access
       //       will present a certificate warning in the browser.

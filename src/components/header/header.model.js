@@ -2,12 +2,12 @@
 
 var header = {};
 
-header.vm = (function() {
+header.vm = (function () {
   var vm = {};
 
-  vm.init = function() {
+  vm.init = function () {
     vm.title = 'Mithril Patterns';
-    vm.subtitle = 'Conventions, in mithril development';
+    vm.subtitle = 'Conventions and best practices collected from the internet';
 
     // nothing
 

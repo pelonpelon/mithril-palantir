@@ -17,21 +17,15 @@ var webpack = require('webpack');
  * a release mode, false otherwise
  * @return {object} Webpack configuration
  */
-module.exports = function(release, watch) {
+module.exports = function (release, watch) {
   return {
     cache: !release,
     debug: !release,
     devtool: 'eval',
     watch: watch,
 
-    entry: {
-      app: './src/app.js',
-      example: './src/components/example.js'
-    },
-
     output: {
-      filename: '[name].js',
-      publicPath: '/build/'
+      filename: 'bundle.js',
     },
 
     stats: {
@@ -109,6 +103,10 @@ module.exports = function(release, watch) {
     // more options in the optional jshint object
     // see: http://jshint.com/docs/ for more details
     jshint: {
+
+      // let vim take care of these
+      asi: true,
+
       // any jshint option http://www.jshint.com/docs/options/
       // i. e.
       camelcase: true,

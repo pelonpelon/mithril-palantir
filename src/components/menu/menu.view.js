@@ -5,28 +5,30 @@ var style = require('insert-css');
 
 var menu = require('./menu.model.js');
 
-menu.view = function(ctrl) {
+menu.view = function (ctrl) {
   return [
-    m('div.menu', {
-    },
+    m('div.menu',
       [
         m('h2', 'Components'),
         m('ul', [
-          ctrl.pages().map(function(page) {
-            return m('li', [
-              m('a.title', { href: page.url, config: m.route }, page.title),
-              m('p.note', page.note)
-
-            ]
-            );
+          ctrl.pages().map(function (page) {
+            return m('li',
+              [
+                m('a.title', { href: page.url, config: m.route }, page.title),
+                m('div.note', (page.note || '')),
+                m('p.note',
+                  [
+                    m('span', m('a[href=' + page.link + '][target=_blank]', page.source)),
+                    page.author ? m('span', ' by ' + page.author) : ''
+                  ])
+              ]);
           }),
         ]
-      )]
-    )
-  ];
+          )]
+      )];
 };
 
-var css = heredoc(function(){/*
+var css = heredoc(function () {/*
 .menu ul {
   list-style-type: none;
   padding-left: 0;
@@ -40,14 +42,6 @@ var css = heredoc(function(){/*
 }
 */});
 style(css, {prepend: true});
-
-
-
-// var style = ''
-// + '.menu ul { list-style-type: none; padding-left: 0; }'
-// + '.menu li { padding: 5px 0; }'
-// + '.menu .note { font-size: smaller; margin: 0 0 0 5% }'
-// ;
 
 var el = document.createElement('style');
 el.setAttribute('type', 'text/css');
