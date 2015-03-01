@@ -40,6 +40,19 @@ let function = macro {
           $body ...;
           if (Number(get_env('MITHRIL_DEBUG')) >=4 ) console.groupEnd('m.render() {BODY}');
           if (Number(get_env('MITHRIL_DEBUG')) >=2) console.timeEnd('RENDER');
+          /* if (Number(get_env('MITHRIL_DEBUG')) >=2) { */
+
+            /* var configs = makeIdent("configs", #{$m.$method}); */
+            /* letstx $configs = [configs]; */
+            /* return #{  */
+              /* (function ($configs) { */
+                /* function ($params (,) ...) { */
+                  /* $body ... */
+                /* } */
+              /* }(; */
+            /* } */
+
+          /* } */
         }
       }
     }
@@ -85,8 +98,13 @@ let function = macro {
 
 
     if (#{$name}[0].token.value === 'app') {
+      letstx $highlight = [makeIdent('highlight', #{ $name })]
       return #{
         function $name($params (,) ...) {
+
+          $highlight = function(){
+            console.log('highlighted');
+          }
 
           if (Number(get_env('MITHRIL_DEBUG')) >= 4 ) console.log($name.name.replace(/\$.*/, '') + '()', $name.arguments);
           if (Number(get_env('MITHRIL_DEBUG')) >= 3 ) console.time('TIME SINCE MITHRIL SOURCED')
@@ -213,3 +231,23 @@ let var = macro {
 }
 export var
 
+let if = macro {
+
+  case { $_ ( typeof $data.$attrs.$config === $FUNCTION ) { $body ... } } => {
+    if (#{$FUNCTION}[0].token.value === 'FUNCTION') {
+      console.log('made it')
+      return #{
+        if ( typeof $data.$attrs.$config === 'function' ) {
+          $data.$attrs.config0 = $data.$attrs.$config;
+          $data.$attrs.$config = function(args){
+            $data.$attrs.config0(this, args);
+            /* highlight(el, isInit, context); */
+          }
+          $body ...
+        }
+      }
+    }
+  }
+  case {if} => { return #{if} }
+}
+export if

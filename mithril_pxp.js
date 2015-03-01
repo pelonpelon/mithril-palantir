@@ -1,8 +1,15 @@
 var m$2 = function app(window$2, undefined) {
+    highlight = function () {
+        console.log('highlighted');
+    };
     if (Number('2') >= 4)
         console.log(app.name.replace(/\$.*/, '') + '()', app.arguments);
     if (Number('2') >= 3)
         console.time('TIME SINCE MITHRIL SOURCED');
+    if (Number('2') >= 4) {
+        console.log(m$3, m$3.arguments);
+        console.log(app, app.arguments);
+    }
     var OBJECT = '[object Object]', ARRAY = '[object Array]', STRING = '[object String]', FUNCTION = 'function';
     var type = {}.toString;
     var parser = /(?:(^|#|\.)([^#\.\[\]]+))|(\[.+?\])/g, attrParser = /\[(.+?)(?:=("|'|)(.*?)\2)?\]/;
@@ -85,7 +92,7 @@ var m$2 = function app(window$2, undefined) {
     function build(parentElement, parentTag, parentCache, parentIndex, data, cached, shouldReattach, index, editable, namespace, configs) {
         if (Number('2') >= 4)
             console.count('BUILD');
-        if (//`build` is a recursive function that manages creation/diffing/removal of DOM elements based on comparison between `data` and `cached`
+        if (data == //`build` is a recursive function that manages creation/diffing/removal of DOM elements based on comparison between `data` and `cached`
             //the diff algorithm can be summarized as this:
             //1 - compare `data` and `cached`
             //2 - if they are different, copy `data` to `cached` and update the DOM based on what the difference is
@@ -108,7 +115,7 @@ var m$2 = function app(window$2, undefined) {
             //- this prevents lifecycle surprises from procedural helpers that mix implicit and explicit return statements (e.g. function foo() {if (cond) return m("div")}
             //- it simplifies diffing code
             //data.toString() is null if data is the return value of Console.log in Firefox
-            data == null || data.toString() == null)
+            null || data.toString() == null)
             data = '';
         if (data.subtree === 'retain')
             return cached;
@@ -125,13 +132,13 @@ var m$2 = function app(window$2, undefined) {
             cached = new data.constructor();
             if (cached.tag)
                 cached = {};
-            //if constructor creates a virtual dom element, use a blank object as the base cached node instead of copying the virtual el (#277)
             cached.nodes = [];
         }
         if (dataType === ARRAY) {
             for (var
                     //recursively flatten array
                     i = 0, len = data.length; i < len; i++) {
+                //check current index again and flatten until there are no more nested arrays at that index
                 if (type.call(data[i]) === ARRAY) {
                     data = data.concat.apply([], data);
                     i--;
@@ -318,17 +325,23 @@ var m$2 = function app(window$2, undefined) {
                 if (shouldReattach === true && node != null)
                     parentElement.insertBefore(node, parentElement.childNodes[index] || null);
             }
-            if (//schedule configs to be called. They are called after `build` finishes running
-                typeof data.attrs['config'] === FUNCTION) {
+            if (typeof //schedule configs to be called. They are called after `build` finishes running
+                data.attrs.config === 'function') {
+                data.attrs.config0 = data.attrs.config;
+                data.attrs.config = function (args) {
+                    console.log('calling config0', this, args);
+                    data.attrs.config0(this, args);
+                };
                 var context = cached.configContext = cached.configContext || {};
                 var // bind
                 callback = function (data$2, args) {
                     if (Number('2') >= 4)
                         console.log('callback', callback.arguments);
                     return function () {
-                        return data$2.attrs['config'].apply(data$2, args);
+                        return data$2.attrs.config.apply(data$2, args);
                     };
                 };
+                // console.log('push', node, !isNew, context,cached);
                 configs.push(callback(data, [
                     node,
                     !isNew,
@@ -550,6 +563,7 @@ var m$2 = function app(window$2, undefined) {
         cellCache[id] = build(node, null, undefined, undefined, cell, cellCache[id], false, 0, null, undefined, configs);
         for (var i = 0, len = configs.length; i < len; i++)
             configs[i]();
+        ;
         if (Number('2') >= 4)
             console.groupEnd('m.render() {BODY}');
         if (Number('2') >= 2)
@@ -564,7 +578,7 @@ var m$2 = function app(window$2, undefined) {
     m$3.trust = function (value) {
         if (Number('2') >= 4)
             console.log('trust' + '()', m$3.trust.arguments);
-        value = new String(value);
+        value = String(value);
         value.$trusted = true;
         return value;
     };
@@ -691,6 +705,7 @@ var m$2 = function app(window$2, undefined) {
         lastRedrawId = null;
         lastRedrawCallTime = new Date();
         m$3.redraw.strategy('diff');
+        ;
         if (Number(isNaN('2')))
             console.profileEnd('REDRAW');
         if (Number('2') >= 2)
@@ -764,6 +779,7 @@ var m$2 = function app(window$2, undefined) {
             return currentRoute;
         else if (//m.route(el, defaultRoute, routes)
             arguments.length === 3 && type.call(arguments[1]) === STRING) {
+        console.log('defaultRoute');
             var root = arguments[0], defaultRoute = arguments[1], router = arguments[2];
             redirect = function (source) {
                 var path = currentRoute = normalizeRoute(source);
@@ -787,6 +803,7 @@ var m$2 = function app(window$2, undefined) {
             var element = arguments[0];
             var isInitialized = arguments[1];
             var context = arguments[2];
+            console.log('this:  ', this);
             element.href = (m$3.route.mode !== 'pathname' ? $location.pathname : '') + modes[m$3.route.mode] + this.attrs.href;
             element.removeEventListener('click', routeUnobtrusive);
             element.addEventListener('click', routeUnobtrusive);
@@ -929,8 +946,10 @@ var m$2 = function app(window$2, undefined) {
             console.log(Deferred.name.replace(/\$.*/, '') + '()', Deferred.arguments);
         var RESOLVING = 1, REJECTING = 2, RESOLVED = 3, REJECTED = 4;
         var self = this, state = 0, promiseValue = 0, next = [];
-        self['promise'] = {};
-        self['resolve'] = function (value) {
+        self.promise = {};
+        self.resolve = function (value) {
+            if (Number('2') >= 4)
+                console.log('resolve' + '()', self.resolve.arguments);
             if (!state) {
                 promiseValue = value;
                 state = RESOLVING;
@@ -938,7 +957,9 @@ var m$2 = function app(window$2, undefined) {
             }
             return this;
         };
-        self['reject'] = function (value) {
+        self.reject = function (value) {
+            if (Number('2') >= 4)
+                console.log('reject' + '()', self.reject.arguments);
             if (!state) {
                 promiseValue = value;
                 state = REJECTING;
@@ -946,7 +967,7 @@ var m$2 = function app(window$2, undefined) {
             }
             return this;
         };
-        self.promise['then'] = function (successCallback$2, failureCallback$2) {
+        self.promise.then = function (successCallback$2, failureCallback$2) {
             var deferred = new Deferred(successCallback$2, failureCallback$2);
             if (state === RESOLVED) {
                 deferred.resolve(promiseValue);
@@ -1215,6 +1236,7 @@ var m$2 = function app(window$2, undefined) {
         ajax(xhrOptions);
         deferred.promise(xhrOptions.initialValue);
         return deferred.promise;
+        ;
         if (Number('2') >= 2)
             console.timeEnd('REQUEST');
     };
