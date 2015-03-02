@@ -1,13 +1,12 @@
 // app.js
 'use strict';
 
-
 var config = require('../gulp-config.js');
 var VERSION = config.version;
 require('./styles/app.styl');
 
-window.m = require('../mithril_pxp.js');
-
+window.m = require('../mithril-palantir.js');
+// window.m = require('mithril');
 
 var header = require('./components/header/header.controller.js');
 m.module(document.getElementById('header'), header);
@@ -17,7 +16,6 @@ m.module(document.getElementById('menu'), menu);
 
 var footer = require('./components/footer/footer.controller.js');
 m.module(document.getElementById('footer'), footer);
-
 
 var intro = require('./components/intro.js');
 var example = require('./components/example.js');

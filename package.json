@@ -76,12 +76,12 @@
   },
   "scripts": {
     "start": "gulp",
-    "debug0": "cp node_modules/mithril/mithril.js ./mithril_pxp.js;",
-    "debug1": "export MITHRIL_DEBUG=1;sjs --readable-names -m ./mithril_pxp_macros.sjs -o ./mithril_pxp.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
-    "debug2": "export MITHRIL_DEBUG=2;sjs --readable-names -m ./mithril_pxp_macros.sjs -o ./mithril_pxp.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
-    "debug3": "export MITHRIL_DEBUG=3;sjs --readable-names -m ./mithril_pxp_macros.sjs -o ./mithril_pxp.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
-    "debug4": "export MITHRIL_DEBUG=4;sjs --readable-names -m ./mithril_pxp_macros.sjs -o ./mithril_pxp.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
-    "profile": "export MITHRIL_DEBUG=p;sjs --readable-names -m ./mithril_pxp_macros.sjs -o ./mithril_pxp.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
+    "reset": "cp node_modules/mithril/mithril.js ./mithril-palantir.js;",
+    "redraws": "export MITHRIL_DEBUG=1;sjs --readable-names -m ./mithril-redraw-macros.sjs -o ./mithril-palantir.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
+    "debug1": "export MITHRIL_DEBUG=1;sjs --readable-names -m ./mithril-debug-macros.sjs -o ./mithril-palantir.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
+    "debug2": "export MITHRIL_DEBUG=2;sjs --readable-names -m ./mithril-debug-macros.sjs -o ./mithril-palantir.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
+    "debug3": "export MITHRIL_DEBUG=3;sjs --readable-names -m ./mithril-debug-macros.sjs -o ./mithril-palantir.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
+    "profile": "export MITHRIL_DEBUG=p;sjs --readable-names -m ./mithril-profile-macros.sjs -o ./mithril-palantir.js node_modules/mithril/mithril.js; export MITHRIL_DEBUG=",
     "test": "jest",
     "test-debug": "node-debug --nodejs --harmony ./node_modules/jest-cli/bin/jest.js"
   }
