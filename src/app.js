@@ -22,6 +22,8 @@ var example = require('./components/example.js');
 var animation = require('./components/animation.js');
 var components = require('./components/components_organization.js');
 var binding = require('./components/bi-directional_data-binding.js');
+var countdown = require('./components/Countdown.js');
+var accordion = require('./components/accordion.js');
 var modal = require('./components/modal.js').demo;
 
 m.route(document.getElementById('content'), '/', {
@@ -30,5 +32,7 @@ m.route(document.getElementById('content'), '/', {
   '/animation': animation,
   '/components': components,
   '/binding': binding,
+  '/countdown': countdown,
+  '/accordion': accordion(config.version + '/assets/accordion.json'),
   '/modal': modal(m('div', 'There\'s more to this Hobbit than meets the eye.'))
 });

@@ -40,6 +40,14 @@
     "url": "/binding"
   },
   {
+    "title": "Accordion",
+    "author": "Phil Toms",
+    "source": "Plunker",
+    "link": "http://plnkr.co/edit/kYUA1JinUcwlnrNK8ltG?p=preview",
+    "note": "",
+    "url": "/accordion"
+  },
+  {
     "title": "Modal",
     "author": "Leo Horie",
     "source": "Human Design",

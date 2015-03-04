@@ -59,7 +59,7 @@ module.exports = function (release, watch) {
       preLoaders: [
         {
           test: /\.js$/,
-          exclude: [/node_modules/, /mithril_pxp\.js$/],
+          exclude: [/node_modules/, /mithril-palantir\.js/],
           loader: 'jshint'
         }
       ],

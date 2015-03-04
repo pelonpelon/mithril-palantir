@@ -6,10 +6,10 @@ var config = require('../../../gulp-config.js');
 var menu = {};
 
 //model
-menu.PageList = function () {
+menu.PageList = function() {
   return m.request({
     method: 'GET',
-    url: config.version + '/menu_items.json'
+    url: config.version + '/assets/menu_items.json'
   });
 };
 

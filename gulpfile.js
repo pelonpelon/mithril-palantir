@@ -106,8 +106,8 @@ gulp.task('assets', function() {
     'src/assets/**'
   ];
   return gulp.src(src.assets)
-    .pipe($.changed(VERSION_DIR))
-    .pipe(gulp.dest(VERSION_DIR))
+    .pipe($.changed(VERSION_DIR + '/assets'))
+    .pipe(gulp.dest(VERSION_DIR + '/assets'))
     .pipe($.size({
       title: 'assets'
     }));
@@ -204,8 +204,8 @@ gulp.task('serve', function(cb) {
       browser: 'Google Chrome Canary',
       notify: false,
       // Customize the BrowserSync console logging prefix
-      logPrefix: 'TIR',
-      port: 3030,
+      logPrefix: 'PALANTIR',
+      port: 3032,
       // Run as an https by uncommenting 'https: true'
       // Note: this uses an unsigned certificate which on first access
       //       will present a certificate warning in the browser.
